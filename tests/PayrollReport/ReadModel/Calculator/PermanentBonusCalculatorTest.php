@@ -5,6 +5,7 @@ namespace Payroll\Tests\PayrollReport\ReadModel\Calculator;
 use Money\Money;
 use Payroll\PayrollReport\ReadModel\BonusType;
 use Payroll\PayrollReport\ReadModel\Calculator\PermanentBonusCalculator;
+use Payroll\PayrollReport\ReadModel\Employee;
 use PHPUnit\Framework\TestCase;
 
 class PermanentBonusCalculatorTest extends TestCase
@@ -22,13 +23,12 @@ class PermanentBonusCalculatorTest extends TestCase
      * @dataProvider getPayrollData
      */
     public function shouldCalculateBonusBasedOnPermanentBonusType(
-        Money $baseRemuneration,
-        \DateTimeImmutable $dateOfEmployment,
+        Employee $employee,
         \DateTimeImmutable $dateOfGeneratingReport,
         Money $expectedFullRemuneration
     ): void {
         $calculator = new PermanentBonusCalculator();
-        $fullRemuneration = $calculator->calculate($baseRemuneration, $dateOfEmployment, $dateOfGeneratingReport);
+        $fullRemuneration = $calculator->calculate($employee, $dateOfGeneratingReport);
 
         self::assertTrue($expectedFullRemuneration->equals($fullRemuneration));
     }
@@ -37,32 +37,47 @@ class PermanentBonusCalculatorTest extends TestCase
     {
         return [
             '11 months of employment' => [
-                Money::USD(1000),
-                new \DateTimeImmutable('2021-10-01'),
+                new Employee(
+                    Money::USD(1000),
+                    new \DateTimeImmutable('2021-10-01'),
+                    BonusType::permanent(),
+                ),
                 new \DateTimeImmutable('2022-09-01'),
                 Money::USD(1000)
             ],
             '1 year of employment' => [
-                Money::USD(1000),
-                new \DateTimeImmutable('2021-09-01'),
+                new Employee(
+                    Money::USD(1000),
+                    new \DateTimeImmutable('2021-09-01'),
+                    BonusType::permanent(),
+                ),
                 new \DateTimeImmutable('2022-09-01'),
                 Money::USD(1100)
             ],
-            '5 year of employment' => [
-                Money::USD(1000),
-                new \DateTimeImmutable('2017-09-01'),
+            '5 years of employment' => [
+                new Employee(
+                    Money::USD(1000),
+                    new \DateTimeImmutable('2017-09-01'),
+                    BonusType::permanent()
+                ),
                 new \DateTimeImmutable('2022-09-01'),
                 Money::USD(1500)
             ],
-            '10 year of employment' => [
-                Money::USD(1000),
-                new \DateTimeImmutable('2012-09-01'),
+            '10 years of employment' => [
+                new Employee(
+                    Money::USD(1000),
+                    new \DateTimeImmutable('2012-09-01'),
+                    BonusType::permanent(),
+                ),
                 new \DateTimeImmutable('2022-09-01'),
                 Money::USD(2000)
             ],
-            '15 year of employment' => [
-                Money::USD(1000),
-                new \DateTimeImmutable('2007-09-01'),
+            'More than 10 years of employment' => [
+                new Employee(
+                    Money::USD(1000),
+                    new \DateTimeImmutable('2007-09-01'),
+                    BonusType::permanent(),
+                ),
                 new \DateTimeImmutable('2022-09-01'),
                 Money::USD(2000)
             ]
