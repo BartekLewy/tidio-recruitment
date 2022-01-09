@@ -30,4 +30,9 @@ class BonusType
     {
         return $this->bonusType === $bonusType->bonusType;
     }
+
+    public function __toString(): string
+    {
+        return $this->bonusType;
+    }
 }

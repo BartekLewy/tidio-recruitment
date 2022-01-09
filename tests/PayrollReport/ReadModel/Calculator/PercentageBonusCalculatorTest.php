@@ -5,7 +5,6 @@ namespace Payroll\Tests\PayrollReport\ReadModel\Calculator;
 use Money\Money;
 use Payroll\PayrollReport\ReadModel\BonusType;
 use Payroll\PayrollReport\ReadModel\Calculator\PercentageBonusCalculator;
-use Payroll\PayrollReport\ReadModel\Calculator\PermanentBonusCalculator;
 use Payroll\PayrollReport\ReadModel\Employee;
 use PHPUnit\Framework\TestCase;
 

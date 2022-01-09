@@ -11,10 +11,8 @@ use Payroll\PayrollReport\ReadModel\Employee;
 
 class PermanentBonusCalculator implements BonusCalculator
 {
-    public function calculate(
-        Employee $employee,
-        \DateTimeImmutable $dateOfGeneratingReport
-    ): Money {
+    public function calculate(Employee $employee, \DateTimeImmutable $dateOfGeneratingReport): Money
+    {
         $years = $dateOfGeneratingReport->diff($employee->getDateOfEmployment(), true)->y;
         $limitOfBonusHasBeenReached = $years >= 10;
 
