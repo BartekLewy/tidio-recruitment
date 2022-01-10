@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Payroll\PayrollReport\ReadModel;
+namespace Payroll\PayrollReport\DomainModel\Calculator\DTO;
 
 use Money\Money;
+use Payroll\PayrollReport\DomainModel\Calculator\ValueObject\BonusType;
 
-class Employee
+class EmploymentDetailsDTO
 {
     private Money $basisOfRemuneration;
     private \DateTimeImmutable $dateOfEmployment;

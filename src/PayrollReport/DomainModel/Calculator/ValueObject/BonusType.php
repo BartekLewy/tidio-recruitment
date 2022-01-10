@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payroll\PayrollReport\ReadModel;
+namespace Payroll\PayrollReport\DomainModel\Calculator\ValueObject;
 
 class BonusType
 {
@@ -11,7 +11,7 @@ class BonusType
 
     private string $bonusType;
 
-    private function __construct(string $bonusType)
+    public function __construct(string $bonusType)
     {
         $this->bonusType = $bonusType;
     }
