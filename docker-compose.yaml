@@ -6,18 +6,17 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_PASSWORD=payroll
-      - MYSQL_DATABASE=payrool
+      - MYSQL_DATABASE=payroll
       - MYSQL_USER=payroll
     ports:
       - 3307:3306
     volumes:
-      - ./var/lib/percona:/var/lib/percona
-#      - ./docker/dbdump/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./var/lib/mysql:/var/lib/mysql
 
   php:
     container_name: payroll_php
     build:
-      context: ./.docker
+      context: ./.docker/php
     ports:
       - 9000:9000
     volumes:
