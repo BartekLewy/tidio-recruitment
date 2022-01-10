@@ -26,7 +26,7 @@ class PayrollReportGeneratorTest extends TestCase
                     'Adam',
                     'Kowalski',
                     'HR',
-                    Money::USD(1000),
+                    Money::USD(100000),
                     'permanent',
                     new \DateTimeImmutable('2007-01-01')
                 ),
@@ -34,7 +34,7 @@ class PayrollReportGeneratorTest extends TestCase
                     'Adam',
                     'Nowak',
                     'Customer Service',
-                    Money::USD(1100),
+                    Money::USD(110000),
                     'percentage',
                     new \DateTimeImmutable('2017-01-01')
                 )
@@ -51,19 +51,19 @@ class PayrollReportGeneratorTest extends TestCase
                     'Adam',
                     'Kowalski',
                     'HR',
-                    Money::USD(1000),
-                    Money::USD(1000),
+                    Money::USD(100000),
+                    Money::USD(100000),
                     'permanent',
-                    Money::USD(2000)
+                    Money::USD(200000)
                 ),
                 new ReportRowDTO(
                     'Adam',
                     'Nowak',
                     'Customer Service',
-                    Money::USD(1100),
-                    Money::USD(110),
+                    Money::USD(110000),
+                    Money::USD(11000),
                     'percentage',
-                    Money::USD(1210)
+                    Money::USD(121000)
                 ),
             ]
         );

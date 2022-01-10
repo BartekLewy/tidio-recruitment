@@ -16,10 +16,21 @@ services:
     Payroll\:
         resource: '../src/'
         exclude:
-            - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
-            - '../src/Tests/'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator:
+        arguments:
+            $calculators:
+                - '@Payroll\PayrollReport\DomainModel\Calculator\Strategy\PermanentBonusCalculator'
+                - '@Payroll\PayrollReport\DomainModel\Calculator\Strategy\PercentageBonusCalculator'
+
+    Payroll\PayrollReport\DomainModel\Calculator\Strategy\PermanentBonusCalculator:
+    Payroll\PayrollReport\DomainModel\Calculator\Strategy\PercentageBonusCalculator:
+
+    Doctrine\DBAL\Connection:
+        factory: Doctrine\DBAL\DriverManager::getConnection
+        arguments:
+            $params:
+                driver:   pdo_mysql
+                url:      '%env(DATABASE_URL)%'
+                charset:  UTF8
