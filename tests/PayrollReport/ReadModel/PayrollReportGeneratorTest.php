@@ -10,6 +10,7 @@ use Payroll\PayrollReport\DomainModel\Calculator\Strategy\PercentageBonusCalcula
 use Payroll\PayrollReport\DomainModel\Calculator\Strategy\PermanentBonusCalculator;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO;
 use Payroll\PayrollReport\ReadModel\PayrollReportGenerator;
+use Payroll\PayrollReport\ReadModel\PayrollReportQuery;
 use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 use PHPUnit\Framework\TestCase;
 
@@ -42,7 +43,10 @@ class PayrollReportGeneratorTest extends TestCase
             new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()])
         );
 
-        $report = $reportGenerator->generate(new \DateTimeImmutable('2022-01-10'));
+        $query = new PayrollReportQuery();
+        $query->setGenerationDate(new \DateTimeImmutable('2022-01-10'));
+
+        $report = $reportGenerator->generate($query);
 
         self::assertEquals(
             $report,

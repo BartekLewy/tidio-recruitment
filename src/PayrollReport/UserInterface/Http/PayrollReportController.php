@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\UserInterface\Http;
 
+use Payroll\PayrollReport\ReadModel\Exception\InvalidArgumentException;
 use Payroll\PayrollReport\ReadModel\PayrollReportGenerator;
+use Payroll\PayrollReport\ReadModel\PayrollReportQuery;
+use Payroll\PayrollReport\UserInterface\ReportPresenter;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class PayrollReportController
 {
@@ -16,10 +20,20 @@ class PayrollReportController
         $this->payrollReportGenerator = $payrollReportGenerator;
     }
 
-    public function generate(): JsonResponse
+    public function generate(Request $request): JsonResponse
     {
-        $result = [];
+        try {
+            $query = PayrollReportQuery::fromArray($request->query->all());
+        } catch (InvalidArgumentException $e) {
+            return new JsonResponse(
+                ['error' => $e->getMessage(), 'code' => $e->getCode()],
+                JsonResponse::HTTP_BAD_REQUEST
+            );
+        }
 
-        return new JsonResponse($result, $result != [] ? JsonResponse::HTTP_OK : JsonResponse::HTTP_NO_CONTENT);
+        $report = $this->payrollReportGenerator->generate($query);
+        $presenter = new ReportPresenter(...$report);
+
+        return new JsonResponse($presenter->present());
     }
 }

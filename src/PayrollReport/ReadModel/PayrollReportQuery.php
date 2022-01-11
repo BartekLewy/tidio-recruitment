@@ -4,76 +4,65 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\ReadModel;
 
-use Payroll\PayrollReport\ReadModel\Exception\InvalidArgumentException;
+use Payroll\PayrollReport\ReadModel\Query\FilterQuery;
+use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 
 class PayrollReportQuery
 {
-    private const ALLOWED_FIELDS_TO_SORT = [
-        'firstName',
-        'lastName',
-        'department',
-        'basisOfRemuneration',
-        'bonusType',
-        'remuneration'
-    ];
+    private ?FilterQuery $filter = null;
+    private ?SortQuery $sort = null;
+    private ?\DateTimeImmutable $generationDate = null;
 
-    private const ALLOWED_FIELDS_TO_FILTER = [
-        'department',
-        'firstName',
-        'lastName'
-    ];
+    public static function fromArray(array $data): self
+    {
+        $query = new self();
 
-    private string $sortDirection;
-    private string $orderBy;
-    private ?\DateTimeImmutable $generationDate;
-    private array $filterBy = [];
-
-    public function __construct(
-        string $sortDirection,
-        string $orderBy,
-        ?\DateTimeImmutable $generationDate = null,
-
-    ) {
-        if (!in_array($orderBy, static::ALLOWED_FIELDS_TO_SORT, true)) {
-            throw InvalidArgumentException::invalidSortApplied($orderBy);
+        if (array_key_exists('sort', $data) && $data['sort'] != []) {
+            $sort = $data['sort'];
+            $key = key($sort);
+            $query->setSort(
+                new SortQuery($key, $sort[$key])
+            );
         }
 
-        if (!in_array(strtoupper($sortDirection), ['ASC', 'DESC'], true)) {
-            throw InvalidArgumentException::invalidSortOrder($sortDirection);
+        if (array_key_exists('filter', $data) && $data['filter'] != []) {
+            $filter = $data['filter'];
+            $key = key($filter);
+            $query->setFilter(
+                new FilterQuery($key, $filter[$key])
+            );
         }
 
-        if ($filterBy && !in_array($filterBy, static::ALLOWED_FIELDS_TO_FILTER, true)) {
-            throw InvalidArgumentException::invalidFilterApplied($filterBy);
-        }
+        return $query;
+    }
 
-        $this->sortDirection = $sortDirection;
-        $this->orderBy = $orderBy;
+    public function getFilter(): ?FilterQuery
+    {
+        return $this->filter;
+    }
+
+    public function setFilter(?FilterQuery $filter): void
+    {
+        $this->filter = $filter;
+    }
+
+    public function getSort(): ?SortQuery
+    {
+        return $this->sort;
+    }
+
+    public function setSort(?SortQuery $sort): void
+    {
+        $this->sort = $sort;
+    }
+
+    public function getGenerationDate(): \DateTimeImmutable
+    {
+        return $this->generationDate ?? new \DateTimeImmutable();
+    }
+
+    public function setGenerationDate(\DateTimeImmutable $generationDate): void
+    {
         $this->generationDate = $generationDate;
-        $this->filterBy = $filterBy;
-    }
-
-    public static function createDefaultQuery(): static
-    {
-        return new static('lastName', 'ASC', new \DateTimeImmutable());
-    }
-
-    public function getSortDirection(): string
-    {
-        return $this->sortDirection;
-    }
-
-    public function getOrderBy(): string
-    {
-        return $this->orderBy;
-    }
-
-    public function getGenerationDate(): ?\DateTimeImmutable
-    {
-        return $this->generationDate;
-    }
-
-    public function getFilterBy(): array
-    {
-        return $this->filterBy;
     }
 }

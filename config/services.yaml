@@ -21,6 +21,15 @@ services:
     Payroll\PayrollReport\UserInterface\Http\PayrollReportController:
         tags: [controller.service_arguments]
 
+    Payroll\PayrollReport\ReadModel\PayrollReportGeneratorWithFullSort:
+        arguments:
+            $generator: '@Payroll\PayrollReport\ReadModel\PayrollReportGenerator'
+
+    Payroll\PayrollReport\ReadModel\PayrollReportGenerator:
+        arguments:
+            $employeeRepository: '@Payroll\PayrollReport\Infrastructure\Employee\EmployeeDbalRepository'
+            $remunerationCalculator: '@Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator'
+
     Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator:
         arguments:
             $calculators:
@@ -30,10 +39,14 @@ services:
     Payroll\PayrollReport\DomainModel\Calculator\Strategy\PermanentBonusCalculator:
     Payroll\PayrollReport\DomainModel\Calculator\Strategy\PercentageBonusCalculator:
 
+    Payroll\PayrollReport\Infrastructure\Employee\EmployeeDbalRepository:
+        arguments:
+            $connection: '@Doctrine\DBAL\Connection'
+
     Doctrine\DBAL\Connection:
         factory: Doctrine\DBAL\DriverManager::getConnection
         arguments:
             $params:
-                driver:   pdo_mysql
-                url:      '%env(DATABASE_URL)%'
-                charset:  UTF8
+                driver: pdo_mysql
+                url: '%env(DATABASE_URL)%'
+                charset: UTF8

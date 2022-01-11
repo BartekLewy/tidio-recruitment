@@ -8,9 +8,25 @@ use Doctrine\DBAL\Connection;
 use Money\Money;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeRepository;
+use Payroll\PayrollReport\ReadModel\Query\FilterQuery;
+use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 
-class EmployeeDbalRepository implements EmployeeRepository
+final class EmployeeDbalRepository implements EmployeeRepository
 {
+    private const FILTER_FIELDS_TO_COLUMN_MAPPING = [
+        'firstName' => 'e.firstname',
+        'lastName' => 'e.lastname',
+        'department' => 'd.name',
+    ];
+
+    private const SORT_FIELDS_TO_COLUMN_MAPPING = [
+        'firstName' => 'e.firstname',
+        'lastName' => 'e.lastname',
+        'department' => 'd.name',
+        'basisOfRemuneration' => 'e.basis_of_remuneration',
+        'bonusType' => 'd.bonus_type',
+    ];
+
     private Connection $connection;
 
     public function __construct(Connection $connection)
@@ -18,15 +34,26 @@ class EmployeeDbalRepository implements EmployeeRepository
         $this->connection = $connection;
     }
 
-    public function getEmployees(): array
+    public function getEmployees(?FilterQuery $filterQuery, ?SortQuery $sortQuery): array
     {
-        $result = $this
+        $query = $this
             ->connection
             ->createQueryBuilder()
             ->select('*')
             ->from('employees', 'e')
-            ->join('e', 'departments', 'd', 'e.department_id = d.id')
-            ->fetchAllAssociative();
+            ->join('e', 'departments', 'd', 'e.department_id = d.id');
+
+        if ($filterQuery) {
+            $query->where(sprintf('%s = :value', self::FILTER_FIELDS_TO_COLUMN_MAPPING[$filterQuery->getKey()]));
+            $query->setParameter('value', $filterQuery->getValue());
+        }
+
+        if ($sortQuery) {
+            $orderBy = self::SORT_FIELDS_TO_COLUMN_MAPPING[$sortQuery->getKey()] ?? 'd.name';
+            $query->orderBy($orderBy, $sortQuery->getValue());
+        }
+
+        $result = $query->fetchAllAssociative();
 
         return array_map(
             static fn(array $rawData) => new EmployeeDTO(

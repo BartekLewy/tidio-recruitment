@@ -18,10 +18,10 @@ final class InvalidArgumentException extends \DomainException
         );
     }
 
-    public static function invalidSortOrder(string $order): self
+    public static function invalidSortOrder(): self
     {
         return new self(
-            sprintf('An order %s is not supported, use ASC or DESC instead', $order),
+            'Invlid sort order applied, use ASC or DESC instead',
             self::INVALID_SORT_ORDER_CODE
         );
     }
@@ -29,7 +29,7 @@ final class InvalidArgumentException extends \DomainException
     public static function invalidFilterApplied(string $field): self
     {
         return new self(
-            sprintf('Field %s is not valid filter', $field),
+            sprintf('Field %s is not valid filter.', $field),
             self::INVALID_FILTER_APPLIED_CODE
         );
     }

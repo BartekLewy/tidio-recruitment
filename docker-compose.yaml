@@ -9,7 +9,7 @@ services:
       - MYSQL_DATABASE=payroll
       - MYSQL_USER=payroll
     ports:
-      - 3307:3306
+      - '3307:3306'
     volumes:
       - ./var/lib/mysql:/var/lib/mysql
 
@@ -18,7 +18,7 @@ services:
     build:
       context: ./.docker/php
     ports:
-      - 9000:9000
+      - '9000:9000'
     volumes:
       - ./:/var/www/app
     depends_on:

@@ -6,6 +6,8 @@ namespace Payroll\Tests\PayrollReport\ReadModel;
 
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeRepository;
+use Payroll\PayrollReport\ReadModel\Query\FilterQuery;
+use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 
 class FakeEmploymentRepository implements EmployeeRepository
 {
@@ -17,7 +19,7 @@ class FakeEmploymentRepository implements EmployeeRepository
         $this->employees = $employees;
     }
 
-    public function getEmployees(): array
+    public function getEmployees(?FilterQuery $filterQuery, ?SortQuery $sortQuery): array
     {
         return $this->employees;
     }

@@ -29,7 +29,7 @@ class PayrollReportGenerator
     {
         $result = [];
 
-        foreach ($this->employeeRepository->getEmployees() as $employee) {
+        foreach ($this->employeeRepository->getEmployees($query->getFilter(), $query->getSort()) as $employee) {
             $result[] = PayrollReportMapper::map(
                 $employee,
                 $this->remunerationCalculator->calculate(
