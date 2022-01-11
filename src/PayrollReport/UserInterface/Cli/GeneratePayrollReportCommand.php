@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Payroll\PayrollReport\UserInterface\Cli;
 
 use Payroll\PayrollReport\ReadModel\PayrollReportGenerator;
+use Payroll\PayrollReport\ReadModel\PayrollReportQuery;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,18 +25,20 @@ class GeneratePayrollReportCommand extends Command
     {
         $this
             ->setName('payroll:report:generate')
-            ->setDescription('It generates payroll reports for current month');
+            ->setDescription('It generates payroll reports for current month')
+            ->addOption('filter');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $report = $this->reportGenerator->generate(new \DateTimeImmutable());
-        $rows = (new ReportPresenter(...$report))->present();
 
-        $table = new Table($output);
-        $table->setHeaders(array_keys($rows[0]));
-        $table->addRows($rows);
-        $table->render();
+//        $report = $this->reportGenerator->generate();
+//        $rows = (new ReportPresenter(...$report))->present();
+//
+//        $table = new Table($output);
+//        $table->setHeaders(array_keys($rows[0]));
+//        $table->addRows($rows);
+//        $table->render();
 
         return self::SUCCESS;
     }

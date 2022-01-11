@@ -13,5 +13,8 @@ stop:
 down:
 	docker-compose down
 
-composer:
-	docker exec -i payroll_php composer
+test:
+	docker exec -it payroll_php php bin/phpunit
+
+generate_report:
+	docker exec -i payroll_php bin/console payroll:report:generate

@@ -1,3 +1,11 @@
+controllers:
+    resource: ../src/PayrollReport/UserInterface/Http/
+    type: annotation
+
 kernel:
     resource: ../src/Kernel.php
     type: annotation
+
+get_payroll_report:
+    path: /
+    controller: Payroll\PayrollReport\UserInterface\Http\PayrollReportController::generate

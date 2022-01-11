@@ -25,7 +25,7 @@ class PayrollReportGenerator
     /**
      * @return ReportRowDTO[]
      */
-    public function generate(\DateTimeImmutable $generationDate): array
+    public function generate(PayrollReportQuery $query): array
     {
         $result = [];
 
@@ -38,7 +38,7 @@ class PayrollReportGenerator
                         $employee->getDateOfEmployment(),
                         new BonusType($employee->getBonusType())
                     ),
-                    $generationDate
+                    $query->getGenerationDate()
                 )
             );
         }

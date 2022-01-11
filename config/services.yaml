@@ -18,6 +18,9 @@ services:
         exclude:
             - '../src/Kernel.php'
 
+    Payroll\PayrollReport\UserInterface\Http\PayrollReportController:
+        tags: [controller.service_arguments]
+
     Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator:
         arguments:
             $calculators:

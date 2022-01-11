@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Payroll\PayrollReport\UserInterface\Cli;
+namespace Payroll\PayrollReport\UserInterface;
 
 use Money\Currencies\ISOCurrencies;
 use Money\Formatter\IntlMoneyFormatter;
@@ -32,7 +32,7 @@ class ReportPresenter
                     'basisOfRemuneration' => $self->formatMoney($row->getBasisOfRemuneration()),
                     'additionalRemuneration' => $self->formatMoney($row->getAdditionalRemuneration()),
                     'bonusType' => $row->getBonusType(),
-                    'fullRemunertaion' => $self->formatMoney($row->getFullRemuneration()),
+                    'fullRemuneration' => $self->formatMoney($row->getFullRemuneration()),
                 ];
             },
             $this->rows
