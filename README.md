@@ -62,6 +62,15 @@ localhost:4200?filter[lastName]=Nowak
 }
 ```
 
+## Dodawanie danych do DB
+```bash
+docker exec -it payroll_db mysql -upayroll -ppayroll payroll
+## działy
+mysql> INSERT INTO `departments` (`name`, `bonus_type`) VALUES ('Development','permanent');
+## pracownicy
+mysql> INSERT INTO `employees` VALUES ('Bartosz','Lewandowski',3,150000,'2013-01-10 00:00:00');
+```
+
 ## Testy
 Aplikacja jest częściowo pokryta testami jednostkowymi. Można je uruchomić przy pomocy polecenia `make test`
 

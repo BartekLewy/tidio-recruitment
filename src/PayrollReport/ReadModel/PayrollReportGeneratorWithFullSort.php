@@ -43,6 +43,10 @@ class PayrollReportGeneratorWithFullSort implements ReportGenerator
                     }
                 }
             );
+
+            if ($sort->getValue() == 'DESC') {
+                $report = array_reverse($report);
+            }
         }
 
         return $report;

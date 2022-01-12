@@ -24,7 +24,8 @@ final class SortQuery extends Query
             throw InvalidArgumentException::invalidSortApplied($key);
         }
 
-        if (!in_array(strtoupper($value), ['ASC', 'DESC'])) {
+        $value = strtoupper($value);
+        if (!in_array($value, ['ASC', 'DESC'])) {
             throw InvalidArgumentException::invalidSortOrder();
         }
 

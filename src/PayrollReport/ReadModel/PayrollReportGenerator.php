@@ -11,7 +11,7 @@ use Payroll\PayrollReport\ReadModel\Employee\EmployeeRepository;
 use Payroll\PayrollReport\ReadModel\Report\PayrollReportMapper;
 use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 
-class PayrollReportGenerator
+class PayrollReportGenerator implements ReportGenerator
 {
     private EmployeeRepository $employeeRepository;
     private RemunerationCalculator $remunerationCalculator;

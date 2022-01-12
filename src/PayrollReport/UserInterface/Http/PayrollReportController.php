@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace Payroll\PayrollReport\UserInterface\Http;
 
 use Payroll\PayrollReport\ReadModel\Exception\InvalidArgumentException;
-use Payroll\PayrollReport\ReadModel\PayrollReportGenerator;
+use Payroll\PayrollReport\ReadModel\PayrollReportGeneratorWithFullSort;
 use Payroll\PayrollReport\ReadModel\PayrollReportQuery;
+use Payroll\PayrollReport\ReadModel\ReportGenerator;
 use Payroll\PayrollReport\UserInterface\ReportPresenter;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class PayrollReportController
 {
-    private PayrollReportGenerator $payrollReportGenerator;
+    private ReportGenerator $payrollReportGenerator;
 
-    public function __construct(PayrollReportGenerator $payrollReportGenerator)
+    public function __construct(PayrollReportGeneratorWithFullSort $payrollReportGenerator)
     {
         $this->payrollReportGenerator = $payrollReportGenerator;
     }
