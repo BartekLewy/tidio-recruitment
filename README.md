@@ -74,3 +74,7 @@ mysql> INSERT INTO `employees` VALUES ('Bartosz','Lewandowski',3,150000,'2013-01
 ## Testy
 Aplikacja jest częściowo pokryta testami jednostkowymi. Można je uruchomić przy pomocy polecenia `make test`
 
+## To improvement:
+- Dodawanie pracowników i działów i podstawowa walidacja
+- Generowanie raportu do pliku
+- Wyższe wskaźnik `test coverage`
