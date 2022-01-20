@@ -68,7 +68,9 @@ docker exec -it payroll_db mysql -upayroll -ppayroll payroll
 ## działy
 mysql> INSERT INTO `departments` (`name`, `bonus_type`) VALUES ('Development','permanent');
 ## pracownicy
-mysql> INSERT INTO `employees` VALUES ('Bartosz','Lewandowski',3,150000,'2013-01-10 00:00:00');
+mysql> INSERT INTO `employees`
+       (firstname, lastname, department_id, basis_of_remuneration, employed_on)
+       VALUES ('Bartosz','Lewandowski',2,150000,'2013-01-10 00:00:00');
 ```
 
 ## Testy
