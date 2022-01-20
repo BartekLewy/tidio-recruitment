@@ -16,7 +16,10 @@ use PHPUnit\Framework\TestCase;
 
 class RemunerationCalculatorTest extends TestCase
 {
-    public function shouldThrowCalculatorNotFoundException(): void
+    /**
+     * @test
+     */
+    public function shouldThrowCalculatorNotFoundExceptionWhenAnyOfCalculatorDoesNotMeetRequirements(): void
     {
         self::expectException(CalculatorNotFoundException::class);
 
