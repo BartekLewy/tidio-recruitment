@@ -11,6 +11,7 @@ use Payroll\PayrollReport\DomainModel\Calculator\ValueObject\BonusType;
 class PermanentBonusCalculator implements BonusCalculator
 {
     private const BASIS_OF_ADDITIONAL = 10000;
+
     private const MAX_YEARLY_MULTIPLIER = 10;
 
     public function calculate(

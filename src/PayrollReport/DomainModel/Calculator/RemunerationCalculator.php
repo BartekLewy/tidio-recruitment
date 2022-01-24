@@ -11,7 +11,9 @@ use Payroll\PayrollReport\DomainModel\Calculator\Strategy\BonusCalculator;
 
 class RemunerationCalculator
 {
-    /** @var BonusCalculator[] */
+    /**
+     * @var BonusCalculator[]
+     */
     private readonly array $calculators;
 
     public function __construct(BonusCalculator ...$calculators)
@@ -32,6 +34,6 @@ class RemunerationCalculator
             }
         }
 
-        throw CalculatorNotFoundException::forBonusType((string)$employmentDetails->getBonusType());
+        throw CalculatorNotFoundException::forBonusType((string) $employmentDetails->getBonusType());
     }
 }

@@ -7,10 +7,12 @@ namespace Payroll\PayrollReport\DomainModel\Calculator\ValueObject;
 class BonusType implements \Stringable
 {
     private const PERMANENT = 'permanent';
+
     private const PERCENTAGE = 'percentage';
 
-    public function __construct(private readonly string $bonusType)
-    {
+    public function __construct(
+        private readonly string $bonusType
+    ) {
     }
 
     public static function permanent(): self

@@ -10,7 +10,9 @@ use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 class PayrollReportQuery
 {
     private ?FilterQuery $filter = null;
+
     private ?SortQuery $sort = null;
+
     private ?\DateTimeImmutable $generationDate = null;
 
     public static function fromArray(array $data): self

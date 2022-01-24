@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\DomainModel\Calculator\Exception;
 
-
 class CalculatorNotFoundException extends \Exception
 {
     public static function forBonusType(string $bonusType): static

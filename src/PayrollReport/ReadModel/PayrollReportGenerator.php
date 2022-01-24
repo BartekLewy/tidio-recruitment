@@ -13,8 +13,10 @@ use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 
 class PayrollReportGenerator implements ReportGenerator
 {
-    public function __construct(private readonly EmployeeRepository $employeeRepository, private readonly RemunerationCalculator $remunerationCalculator)
-    {
+    public function __construct(
+        private readonly EmployeeRepository $employeeRepository,
+        private readonly RemunerationCalculator $remunerationCalculator
+    ) {
     }
 
     /**
