@@ -12,7 +12,7 @@ use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 class FakeEmploymentRepository implements EmployeeRepository
 {
     /** @var EmployeeDTO[] */
-    private array $employees;
+    private readonly array $employees;
 
     public function __construct(EmployeeDTO ...$employees)
     {

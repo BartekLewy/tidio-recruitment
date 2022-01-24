@@ -4,16 +4,13 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\DomainModel\Calculator\ValueObject;
 
-class BonusType
+class BonusType implements \Stringable
 {
     private const PERMANENT = 'permanent';
     private const PERCENTAGE = 'percentage';
 
-    private string $bonusType;
-
-    public function __construct(string $bonusType)
+    public function __construct(private readonly string $bonusType)
     {
-        $this->bonusType = $bonusType;
     }
 
     public static function permanent(): self

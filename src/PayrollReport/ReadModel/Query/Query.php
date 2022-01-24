@@ -6,13 +6,8 @@ namespace Payroll\PayrollReport\ReadModel\Query;
 
 abstract class Query
 {
-    private string $key;
-    private string $value;
-
-    public function __construct(string $key, string $value)
+    public function __construct(private readonly string $key, private readonly string $value)
     {
-        $this->key = $key;
-        $this->value = $value;
     }
 
     public function getValue(): string

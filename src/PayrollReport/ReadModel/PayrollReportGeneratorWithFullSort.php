@@ -15,11 +15,8 @@ class PayrollReportGeneratorWithFullSort implements ReportGenerator
         self::FULL_REMUNERATION,
     ];
 
-    private ReportGenerator $generator;
-
-    public function __construct(ReportGenerator $generator)
+    public function __construct(private readonly ReportGenerator $generator)
     {
-        $this->generator = $generator;
     }
 
     /**

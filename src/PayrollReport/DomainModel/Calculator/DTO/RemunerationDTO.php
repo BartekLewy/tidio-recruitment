@@ -8,13 +8,8 @@ use Money\Money;
 
 class RemunerationDTO
 {
-    private Money $baseRemuneration;
-    private Money $additionalRemuneration;
-
-    public function __construct(Money $baseRemuneration, Money $additionalRemuneration)
+    public function __construct(private readonly Money $baseRemuneration, private readonly Money $additionalRemuneration)
     {
-        $this->baseRemuneration = $baseRemuneration;
-        $this->additionalRemuneration = $additionalRemuneration;
     }
 
     public function getBaseRemuneration(): Money

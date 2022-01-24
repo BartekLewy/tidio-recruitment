@@ -27,11 +27,8 @@ final class EmployeeDbalRepository implements EmployeeRepository
         'bonusType' => 'd.bonus_type',
     ];
 
-    private Connection $connection;
-
-    public function __construct(Connection $connection)
+    public function __construct(private readonly Connection $connection)
     {
-        $this->connection = $connection;
     }
 
     public function getEmployees(?FilterQuery $filterQuery, ?SortQuery $sortQuery): array
@@ -56,7 +53,7 @@ final class EmployeeDbalRepository implements EmployeeRepository
         $result = $query->fetchAllAssociative();
 
         return array_map(
-            static fn(array $rawData) => new EmployeeDTO(
+            static fn(array $rawData): \Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO => new EmployeeDTO(
                 $rawData['firstname'],
                 $rawData['lastname'],
                 $rawData['name'],
