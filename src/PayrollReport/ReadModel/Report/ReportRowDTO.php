@@ -8,8 +8,15 @@ use Money\Money;
 
 class ReportRowDTO
 {
-    public function __construct(private readonly string $firstName, private readonly string $lastName, private readonly string $department, private readonly Money $basisOfRemuneration, private readonly Money $additionalRemuneration, private readonly string $bonusType, private readonly Money $fullRemuneration)
-    {
+    public function __construct(
+        private readonly string $firstName,
+        private readonly string $lastName,
+        private readonly string $department,
+        private readonly Money $basisOfRemuneration,
+        private readonly Money $additionalRemuneration,
+        private readonly string $bonusType,
+        private readonly Money $fullRemuneration
+    ) {
     }
 
     public function getFirstName(): string

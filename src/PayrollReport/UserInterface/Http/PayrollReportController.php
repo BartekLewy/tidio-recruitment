@@ -14,8 +14,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PayrollReportController
 {
-    public function __construct(private readonly PayrollReportGeneratorWithFullSort $payrollReportGenerator)
-    {
+    public function __construct(
+        private readonly PayrollReportGeneratorWithFullSort $payrollReportGenerator
+    ) {
     }
 
     public function generate(Request $request): JsonResponse
@@ -24,7 +25,10 @@ class PayrollReportController
             $query = PayrollReportQuery::fromArray($request->query->all());
         } catch (InvalidArgumentException $e) {
             return new JsonResponse(
-                ['error' => $e->getMessage(), 'code' => $e->getCode()],
+                [
+                    'error' => $e->getMessage(),
+                    'code' => $e->getCode(),
+                ],
                 JsonResponse::HTTP_BAD_REQUEST
             );
         }

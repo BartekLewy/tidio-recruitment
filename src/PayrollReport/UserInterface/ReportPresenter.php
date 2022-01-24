@@ -11,7 +11,9 @@ use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 
 class ReportPresenter
 {
-    /** @var ReportRowDTO[] */
+    /**
+     * @var ReportRowDTO[]
+     */
     private readonly array $rows;
 
     public function __construct(ReportRowDTO ...$rows)
@@ -24,7 +26,7 @@ class ReportPresenter
         $self = $this;
 
         return array_map(
-            static fn(ReportRowDTO $row): array => [
+            static fn (ReportRowDTO $row): array => [
                 'firstName' => $row->getFirstName(),
                 'lastName' => $row->getLastName(),
                 'department' => $row->getDepartment(),

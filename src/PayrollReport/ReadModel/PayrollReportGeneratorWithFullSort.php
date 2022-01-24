@@ -9,14 +9,17 @@ use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 class PayrollReportGeneratorWithFullSort implements ReportGenerator
 {
     private const ADDITIONAL_REMUNERATION = 'additionalRemuneration';
+
     private const FULL_REMUNERATION = 'fullRemuneration';
+
     private const SUPPORTED_FIELDS = [
         self::ADDITIONAL_REMUNERATION,
         self::FULL_REMUNERATION,
     ];
 
-    public function __construct(private readonly ReportGenerator $generator)
-    {
+    public function __construct(
+        private readonly ReportGenerator $generator
+    ) {
     }
 
     /**

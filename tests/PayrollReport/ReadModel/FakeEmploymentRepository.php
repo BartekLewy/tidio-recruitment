@@ -11,7 +11,9 @@ use Payroll\PayrollReport\ReadModel\Query\SortQuery;
 
 class FakeEmploymentRepository implements EmployeeRepository
 {
-    /** @var EmployeeDTO[] */
+    /**
+     * @var EmployeeDTO[]
+     */
     private readonly array $employees;
 
     public function __construct(EmployeeDTO ...$employees)

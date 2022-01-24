@@ -74,6 +74,7 @@
         "symfony/browser-kit": "6.0.*",
         "symfony/css-selector": "6.0.*",
         "symfony/maker-bundle": "^1.36",
-        "symfony/phpunit-bridge": "^6.0"
+        "symfony/phpunit-bridge": "^6.0",
+        "symplify/easy-coding-standard": "^10.0"
     }
 }

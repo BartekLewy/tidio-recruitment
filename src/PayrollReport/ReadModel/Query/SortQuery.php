@@ -20,12 +20,12 @@ final class SortQuery extends Query
 
     public function __construct(string $key, string $value)
     {
-        if (!in_array($key, self::ALLOWED_FIELDS_TO_SORT)) {
+        if (! in_array($key, self::ALLOWED_FIELDS_TO_SORT)) {
             throw InvalidArgumentException::invalidSortApplied($key);
         }
 
         $value = strtoupper($value);
-        if (!in_array($value, ['ASC', 'DESC'])) {
+        if (! in_array($value, ['ASC', 'DESC'])) {
             throw InvalidArgumentException::invalidSortOrder();
         }
 

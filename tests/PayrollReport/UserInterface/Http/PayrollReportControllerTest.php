@@ -43,7 +43,6 @@ class PayrollReportControllerTest extends WebTestCase
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
     }
 
-
     /**
      * @test
      */
@@ -105,7 +104,7 @@ class PayrollReportControllerTest extends WebTestCase
             'sort fullRemuneration desc' => ['?sort[fullRemuneration]=DESC'],
             'filter firstname' => ['?filter[firstName]=Adam'],
             'filter lastname' => ['?filter[lastName]=Kowalski'],
-            'filter department' => ['?filter[department]=HR']
+            'filter department' => ['?filter[department]=HR'],
         ];
     }
 }

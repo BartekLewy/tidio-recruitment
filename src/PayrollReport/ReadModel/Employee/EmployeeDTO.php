@@ -8,8 +8,14 @@ use Money\Money;
 
 class EmployeeDTO
 {
-    public function __construct(private readonly string $firstName, private readonly string $lastName, private readonly string $department, private readonly Money $basisOfRemuneration, private readonly string $bonusType, private readonly \DateTimeImmutable $dateOfEmployment)
-    {
+    public function __construct(
+        private readonly string $firstName,
+        private readonly string $lastName,
+        private readonly string $department,
+        private readonly Money $basisOfRemuneration,
+        private readonly string $bonusType,
+        private readonly \DateTimeImmutable $dateOfEmployment
+    ) {
     }
 
     public function getFirstName(): string

@@ -9,8 +9,11 @@ use Payroll\PayrollReport\DomainModel\Calculator\ValueObject\BonusType;
 
 class EmploymentDetailsDTO
 {
-    public function __construct(private readonly Money $basisOfRemuneration, private readonly \DateTimeImmutable $dateOfEmployment, private readonly BonusType $bonusType)
-    {
+    public function __construct(
+        private readonly Money $basisOfRemuneration,
+        private readonly \DateTimeImmutable $dateOfEmployment,
+        private readonly BonusType $bonusType
+    ) {
     }
 
     public function getBasisOfRemuneration(): Money
