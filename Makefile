@@ -14,4 +14,7 @@ down:
 	docker-compose down
 
 test:
-	docker exec -it payroll_php php bin/phpunit
+	docker exec -it payroll_php php bin/phpunit --testdox
+
+test-coverage:
+	docker exec -it payroll_php bash -c 'export XDEBUG_MODE=coverage && php bin/phpunit --testdox --coverage-html ./coverage'
