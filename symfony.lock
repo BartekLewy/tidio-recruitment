@@ -50,6 +50,9 @@
     "phpspec/prophecy": {
         "version": "v1.15.0"
     },
+    "phpstan/phpstan": {
+        "version": "1.4.2"
+    },
     "phpunit/php-code-coverage": {
         "version": "9.2.10"
     },
@@ -96,6 +99,9 @@
     },
     "ramsey/uuid": {
         "version": "4.2.3"
+    },
+    "rector/rector": {
+        "version": "0.12.13"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"

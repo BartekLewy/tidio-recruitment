@@ -12,7 +12,7 @@ use Payroll\PayrollReport\DomainModel\Calculator\Strategy\BonusCalculator;
 class RemunerationCalculator
 {
     /** @var BonusCalculator[] */
-    private array $calculators;
+    private readonly array $calculators;
 
     public function __construct(BonusCalculator ...$calculators)
     {

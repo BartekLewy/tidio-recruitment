@@ -8,30 +8,8 @@ use Money\Money;
 
 class ReportRowDTO
 {
-    private string $firstName;
-    private string $lastName;
-    private string $department;
-    private Money $basisOfRemuneration;
-    private Money $additionalRemuneration;
-    private string $bonusType;
-    private Money $fullRemuneration;
-
-    public function __construct(
-        string $firstName,
-        string $lastName,
-        string $department,
-        Money $basisOfRemuneration,
-        Money $additionalRemuneration,
-        string $bonusType,
-        Money $fullRemuneration
-    ) {
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->department = $department;
-        $this->basisOfRemuneration = $basisOfRemuneration;
-        $this->additionalRemuneration = $additionalRemuneration;
-        $this->bonusType = $bonusType;
-        $this->fullRemuneration = $fullRemuneration;
+    public function __construct(private readonly string $firstName, private readonly string $lastName, private readonly string $department, private readonly Money $basisOfRemuneration, private readonly Money $additionalRemuneration, private readonly string $bonusType, private readonly Money $fullRemuneration)
+    {
     }
 
     public function getFirstName(): string

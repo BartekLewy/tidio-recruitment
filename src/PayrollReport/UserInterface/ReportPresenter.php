@@ -12,7 +12,7 @@ use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 class ReportPresenter
 {
     /** @var ReportRowDTO[] */
-    private array $rows;
+    private readonly array $rows;
 
     public function __construct(ReportRowDTO ...$rows)
     {
@@ -24,17 +24,15 @@ class ReportPresenter
         $self = $this;
 
         return array_map(
-            static function (ReportRowDTO $row) use ($self): array {
-                return [
-                    'firstName' => $row->getFirstName(),
-                    'lastName' => $row->getLastName(),
-                    'department' => $row->getDepartment(),
-                    'basisOfRemuneration' => $self->formatMoney($row->getBasisOfRemuneration()),
-                    'additionalRemuneration' => $self->formatMoney($row->getAdditionalRemuneration()),
-                    'bonusType' => $row->getBonusType(),
-                    'fullRemuneration' => $self->formatMoney($row->getFullRemuneration()),
-                ];
-            },
+            static fn(ReportRowDTO $row): array => [
+                'firstName' => $row->getFirstName(),
+                'lastName' => $row->getLastName(),
+                'department' => $row->getDepartment(),
+                'basisOfRemuneration' => $self->formatMoney($row->getBasisOfRemuneration()),
+                'additionalRemuneration' => $self->formatMoney($row->getAdditionalRemuneration()),
+                'bonusType' => $row->getBonusType(),
+                'fullRemuneration' => $self->formatMoney($row->getFullRemuneration()),
+            ],
             $this->rows
         );
     }

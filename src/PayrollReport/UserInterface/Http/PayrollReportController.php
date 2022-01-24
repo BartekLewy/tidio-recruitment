@@ -14,11 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PayrollReportController
 {
-    private ReportGenerator $payrollReportGenerator;
-
-    public function __construct(PayrollReportGeneratorWithFullSort $payrollReportGenerator)
+    public function __construct(private readonly PayrollReportGeneratorWithFullSort $payrollReportGenerator)
     {
-        $this->payrollReportGenerator = $payrollReportGenerator;
     }
 
     public function generate(Request $request): JsonResponse

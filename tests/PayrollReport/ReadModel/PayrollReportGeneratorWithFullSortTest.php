@@ -75,22 +75,22 @@ class PayrollReportGeneratorWithFullSortTest extends TestCase
         return [
             'Sort ascending order by full remuneration' => [
                 ['sort' => ['fullRemuneration' => 'ASC']],
-                static fn(ReportRowDTO $row) => $row->getFullRemuneration(),
+                static fn(ReportRowDTO $row): \Money\Money => $row->getFullRemuneration(),
                 [Money::USD(121000), Money::USD(200000), Money::USD(300000)]
             ],
             'Sort descending order by full remuneration' => [
                 ['sort' => ['fullRemuneration' => 'DESC']],
-                static fn(ReportRowDTO $row) => $row->getFullRemuneration(),
+                static fn(ReportRowDTO $row): \Money\Money => $row->getFullRemuneration(),
                 [Money::USD(300000), Money::USD(200000), Money::USD(121000)]
             ],
             'Sort ascending order by additional remuneration' => [
                 ['sort' => ['additionalRemuneration' => 'ASC']],
-                static fn(ReportRowDTO $row) => $row->getAdditionalRemuneration(),
+                static fn(ReportRowDTO $row): \Money\Money => $row->getAdditionalRemuneration(),
                 [Money::USD(11000), Money::USD(100000), Money::USD(100000)]
             ],
             'Sort descending order by additional remuneration' => [
                 ['sort' => ['additionalRemuneration' => 'DESC']],
-                static fn(ReportRowDTO $row) => $row->getAdditionalRemuneration(),
+                static fn(ReportRowDTO $row): \Money\Money => $row->getAdditionalRemuneration(),
                 [Money::USD(100000), Money::USD(100000), Money::USD(11000)]
             ],
         ];
