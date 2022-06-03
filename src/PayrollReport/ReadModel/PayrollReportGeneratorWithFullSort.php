@@ -9,7 +9,6 @@ use Payroll\PayrollReport\ReadModel\Report\ReportRowDTO;
 class PayrollReportGeneratorWithFullSort implements ReportGenerator
 {
     private const ADDITIONAL_REMUNERATION = 'additionalRemuneration';
-
     private const FULL_REMUNERATION = 'fullRemuneration';
 
     private const SUPPORTED_FIELDS = [
@@ -41,6 +40,8 @@ class PayrollReportGeneratorWithFullSort implements ReportGenerator
                     if ($sort->getKey() == self::FULL_REMUNERATION) {
                         return $a->getFullRemuneration() <=> $b->getFullRemuneration();
                     }
+
+                    return 0;
                 }
             );
 

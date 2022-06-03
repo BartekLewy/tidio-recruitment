@@ -13,8 +13,6 @@ class PayrollReportQuery
 
     private ?SortQuery $sort = null;
 
-    private ?\DateTimeImmutable $generationDate = null;
-
     public static function fromArray(array $data): self
     {
         $query = new self();
@@ -56,15 +54,5 @@ class PayrollReportQuery
     public function setSort(?SortQuery $sort): void
     {
         $this->sort = $sort;
-    }
-
-    public function getGenerationDate(): \DateTimeImmutable
-    {
-        return $this->generationDate ?? new \DateTimeImmutable();
-    }
-
-    public function setGenerationDate(\DateTimeImmutable $generationDate): void
-    {
-        $this->generationDate = $generationDate;
     }
 }

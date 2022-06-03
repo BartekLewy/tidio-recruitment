@@ -29,6 +29,7 @@ services:
         arguments:
             $employeeRepository: '@Payroll\PayrollReport\Infrastructure\Employee\EmployeeDbalRepository'
             $remunerationCalculator: '@Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator'
+            $clock: '@Payroll\PayrollReport\Infrastructure\SystemClock'
 
     Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator:
         arguments:
@@ -42,6 +43,8 @@ services:
     Payroll\PayrollReport\Infrastructure\Employee\EmployeeDbalRepository:
         arguments:
             $connection: '@Doctrine\DBAL\Connection'
+
+    Payroll\PayrollReport\Infrastructure\SystemClock:
 
     Doctrine\DBAL\Connection:
         factory: Doctrine\DBAL\DriverManager::getConnection

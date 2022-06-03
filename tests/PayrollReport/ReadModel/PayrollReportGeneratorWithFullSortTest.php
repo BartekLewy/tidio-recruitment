@@ -49,7 +49,8 @@ class PayrollReportGeneratorWithFullSortTest extends TestCase
                         new \DateTimeImmutable('2017-01-01')
                     )
                 ),
-                new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()])
+                new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()]),
+                new FakeClock(new \DateTimeImmutable()),
             ),
         );
     }

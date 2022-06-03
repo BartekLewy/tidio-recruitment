@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\ReadModel;
 
+use Payroll\PayrollReport\DomainModel\Calculator\Clock;
 use Payroll\PayrollReport\DomainModel\Calculator\DTO\EmploymentDetailsDTO;
+use Payroll\PayrollReport\DomainModel\Calculator\Exception\CalculatorNotFoundException;
 use Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator;
 use Payroll\PayrollReport\DomainModel\Calculator\ValueObject\BonusType;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeRepository;
@@ -15,12 +17,14 @@ class PayrollReportGenerator implements ReportGenerator
 {
     public function __construct(
         private readonly EmployeeRepository $employeeRepository,
-        private readonly RemunerationCalculator $remunerationCalculator
+        private readonly RemunerationCalculator $remunerationCalculator,
+        private readonly Clock $clock
     ) {
     }
 
     /**
      * @return ReportRowDTO[]
+     * @throws CalculatorNotFoundException
      */
     public function generate(PayrollReportQuery $query): array
     {
@@ -35,7 +39,7 @@ class PayrollReportGenerator implements ReportGenerator
                         $employee->getDateOfEmployment(),
                         new BonusType($employee->getBonusType())
                     ),
-                    $query->getGenerationDate()
+                    $this->clock->getCurrentTime()
                 )
             );
         }

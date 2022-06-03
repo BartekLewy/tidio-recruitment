@@ -40,13 +40,11 @@ class PayrollReportGeneratorTest extends TestCase
                     new \DateTimeImmutable('2017-01-01')
                 )
             ),
-            new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()])
+            new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()]),
+            new FakeClock(new \DateTimeImmutable('2022-01-10'))
         );
 
-        $query = new PayrollReportQuery();
-        $query->setGenerationDate(new \DateTimeImmutable('2022-01-10'));
-
-        $report = $reportGenerator->generate($query);
+        $report = $reportGenerator->generate(new PayrollReportQuery());
 
         self::assertEquals(
             $report,
