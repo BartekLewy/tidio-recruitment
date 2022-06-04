@@ -25,6 +25,14 @@
 /*!50717 DEALLOCATE PREPARE s */;
 
 --
+-- Current Database: `payroll`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `payroll` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `payroll`;
+
+--
 -- Table structure for table `departments`
 --
 
@@ -34,6 +42,7 @@ DROP TABLE IF EXISTS `departments`;
 CREATE TABLE `departments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
+  `bonus` int(11) DEFAULT NULL,
   `bonus_type` enum('percentage','permanent') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
@@ -45,7 +54,7 @@ CREATE TABLE `departments` (
 
 LOCK TABLES `departments` WRITE;
 /*!40000 ALTER TABLE `departments` DISABLE KEYS */;
-INSERT INTO `departments` VALUES (1,'HR','permanent'),(2,'Customer Service','percentage');
+INSERT INTO `departments` VALUES (1,'HR',0,'permanent'),(2,'Customer Service',10,'percentage');
 /*!40000 ALTER TABLE `departments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,4 +101,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-01-10 19:45:02
+-- Dump completed on 2022-06-04  1:00:12

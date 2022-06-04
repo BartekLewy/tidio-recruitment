@@ -18,3 +18,6 @@ test:
 
 test-coverage:
 	docker exec -it payroll_php bash -c 'export XDEBUG_MODE=coverage && php bin/phpunit --testdox --coverage-html ./coverage'
+
+dump:
+	docker exec -i payroll_db mysqldump -uroot -proot --databases payroll > .docker/mysql/schema.sql

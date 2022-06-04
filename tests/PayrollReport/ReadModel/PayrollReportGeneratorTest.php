@@ -30,7 +30,8 @@ class PayrollReportGeneratorTest extends TestCase
                     'HR',
                     Money::USD(100000),
                     'permanent',
-                    new DateTimeImmutable('2007-01-01')
+                    new DateTimeImmutable('2007-01-01'),
+                    0
                 ),
                 new EmployeeDTO(
                     'Adam',
@@ -38,7 +39,8 @@ class PayrollReportGeneratorTest extends TestCase
                     'Customer Service',
                     Money::USD(110000),
                     'percentage',
-                    new DateTimeImmutable('2017-01-01')
+                    new DateTimeImmutable('2017-01-01'),
+                    10
                 )
             ),
             new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()]),

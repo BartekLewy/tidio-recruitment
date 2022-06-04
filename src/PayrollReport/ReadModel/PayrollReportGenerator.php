@@ -37,7 +37,8 @@ class PayrollReportGenerator implements ReportGenerator
                     new EmploymentDetailsDTO(
                         $employee->getBasisOfRemuneration(),
                         $employee->getDateOfEmployment(),
-                        new BonusType($employee->getBonusType())
+                        new BonusType($employee->getBonusType()),
+                        $employee->getBonus()
                     ),
                     $this->clock->getCurrentTime()
                 )

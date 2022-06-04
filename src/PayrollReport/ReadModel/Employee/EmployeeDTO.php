@@ -14,7 +14,8 @@ class EmployeeDTO
         private readonly string $department,
         private readonly Money $basisOfRemuneration,
         private readonly string $bonusType,
-        private readonly \DateTimeImmutable $dateOfEmployment
+        private readonly \DateTimeImmutable $dateOfEmployment,
+        private readonly int $bonus,
     ) {
     }
 
@@ -46,5 +47,10 @@ class EmployeeDTO
     public function getDateOfEmployment(): \DateTimeImmutable
     {
         return $this->dateOfEmployment;
+    }
+
+    public function getBonus(): int
+    {
+        return $this->bonus;
     }
 }

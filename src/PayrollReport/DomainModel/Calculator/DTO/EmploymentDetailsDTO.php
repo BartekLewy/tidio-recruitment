@@ -12,7 +12,8 @@ class EmploymentDetailsDTO
     public function __construct(
         private readonly Money $basisOfRemuneration,
         private readonly \DateTimeImmutable $dateOfEmployment,
-        private readonly BonusType $bonusType
+        private readonly BonusType $bonusType,
+        private readonly int $bonus
     ) {
     }
 
@@ -29,5 +30,10 @@ class EmploymentDetailsDTO
     public function getBonusType(): BonusType
     {
         return $this->bonusType;
+    }
+
+    public function getBonus(): int
+    {
+        return $this->bonus;
     }
 }

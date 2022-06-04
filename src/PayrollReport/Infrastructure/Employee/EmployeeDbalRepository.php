@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\Infrastructure\Employee;
 
+use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
 use Money\Money;
 use Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO;
@@ -54,13 +55,14 @@ final class EmployeeDbalRepository implements EmployeeRepository
         $result = $query->fetchAllAssociative();
 
         return array_map(
-            static fn (array $rawData): \Payroll\PayrollReport\ReadModel\Employee\EmployeeDTO => new EmployeeDTO(
+            static fn (array $rawData): EmployeeDTO => new EmployeeDTO(
                 $rawData['firstname'],
                 $rawData['lastname'],
                 $rawData['name'],
                 Money::USD($rawData['basis_of_remuneration']),
                 $rawData['bonus_type'],
-                new \DateTimeImmutable($rawData['employed_on']),
+                new DateTimeImmutable($rawData['employed_on']),
+                $rawData['bonus']
             ),
             $result
         );
