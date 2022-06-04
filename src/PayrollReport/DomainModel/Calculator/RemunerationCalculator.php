@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payroll\PayrollReport\DomainModel\Calculator;
 
+use DateTimeImmutable;
 use Payroll\PayrollReport\DomainModel\Calculator\DTO\EmploymentDetailsDTO;
 use Payroll\PayrollReport\DomainModel\Calculator\DTO\RemunerationDTO;
 use Payroll\PayrollReport\DomainModel\Calculator\Exception\CalculatorNotFoundException;
@@ -21,9 +22,12 @@ class RemunerationCalculator
         $this->calculators = $calculators;
     }
 
+    /**
+     * @throws CalculatorNotFoundException
+     */
     public function calculate(
         EmploymentDetailsDTO $employmentDetails,
-        \DateTimeImmutable $calculationDate
+        DateTimeImmutable $calculationDate
     ): RemunerationDTO {
         foreach ($this->calculators as $calculator) {
             if ($calculator->supports($employmentDetails->getBonusType())) {
