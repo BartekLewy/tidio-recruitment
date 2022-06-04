@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Payroll\Tests\PayrollReport\ReadModel;
 
+use DateTimeImmutable;
 use Money\Money;
 use Payroll\PayrollReport\DomainModel\Calculator\RemunerationCalculator;
 use Payroll\PayrollReport\DomainModel\Calculator\Strategy\PercentageBonusCalculator;
@@ -29,7 +30,7 @@ class PayrollReportGeneratorTest extends TestCase
                     'HR',
                     Money::USD(100000),
                     'permanent',
-                    new \DateTimeImmutable('2007-01-01')
+                    new DateTimeImmutable('2007-01-01')
                 ),
                 new EmployeeDTO(
                     'Adam',
@@ -37,11 +38,11 @@ class PayrollReportGeneratorTest extends TestCase
                     'Customer Service',
                     Money::USD(110000),
                     'percentage',
-                    new \DateTimeImmutable('2017-01-01')
+                    new DateTimeImmutable('2017-01-01')
                 )
             ),
             new RemunerationCalculator(...[new PercentageBonusCalculator(), new PermanentBonusCalculator()]),
-            new FakeClock(new \DateTimeImmutable('2022-01-10'))
+            new FakeClock(new DateTimeImmutable('2022-01-10'))
         );
 
         $report = $reportGenerator->generate(new PayrollReportQuery());
